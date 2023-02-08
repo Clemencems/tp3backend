@@ -10,9 +10,9 @@
     <script>
         // On définit la catégorie à sauvegarder
         // Note : on pourrait aussi le récupérer depuis un formulaire de saisie
-        const categorieASauvegarder = {
-            "libelle": "Quincaillerie",
-            "description": "clous, vis, boulons"
+        const clientASauvegarder = {
+            "Nom": " ",
+            "description": " "
         };
 
         // Montrer les résultats quand tout s'est bien passé
@@ -48,8 +48,14 @@
         }
 
 
-        function enregistreCategorie() {
-            console.log("Données envoyées : %o", categorieASauvegarder);
+        function enregistreClient() {
+
+            const clientASauvegarder = {
+                "code": document.getElementById("code").value,
+                "societe": document.getElementById("societe").value,
+                "contact": document.getElementById("contact").value
+            };
+            console.log("Données envoyées : %o", clientASauvegarder);
             const options = {
                 method: "POST",
                 headers: { // On indique qu'on envoie du JSON
@@ -58,7 +64,7 @@
                 },
                 // On envoie les données au format JSON
                 // dans le corps de la requête
-                body: JSON.stringify(categorieASauvegarder)
+                body: JSON.stringify(clientASauvegarder)
             };
             fetch("api/categories", options)
                 // Si pas d'erreur réseau, on convertit le json reçu en objet javascript
@@ -72,15 +78,15 @@
 </head>
 
 <body>
-    <h1>Exemple d'appel AJAX avec l'API fetch</h1>
-    <h2>Sauvegarder une catégorie</h2>
+<h1>Exemple d'appel AJAX avec l'API fetch</h1>
+<h2>Sauvegarder un client</h2>
 
-    <button onclick="enregistreCategorie()">Enregistrer une nouvelle catégorie</button><br>
+<button onclick="enregistreClient()">Enregistrer un nouveau client</button><br>
 
-    <div>Ouvrez la console pour voir le résultat</div>
-    <hr>
-    <a href='api/categories' target="_blank">La liste des catégories (JSON)</a><br />
-    <a href="/">Retour au menu</a>
+<div>Ouvrez la console pour voir le résultat</div>
+<hr>
+<a href='api/client' target="_blank">La liste des catégories (JSON)</a><br />
+<a href="/">Retour au menu</a>
 </body>
 
 </html>
